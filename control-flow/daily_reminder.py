@@ -23,4 +23,5 @@ else:
     message += ". Consider completing it when you have free time."
 
 # Step 4: Print the reminder
-print("\nReminder:", message)
+print("Reminder:", message)
+
