@@ -1,24 +1,32 @@
 # temp_conversion_tool.py
 
 # ---- Global Conversion Factors ----
-FAHRENHEIT_TO_CELSIUS_FACTOR = 5 / 9
-CELSIUS_TO_FAHRENHEIT_FACTOR = 9 / 5
-FREEZING_POINT_FAHRENHEIT = 32  # used for shifting the scale
-FREEZING_POINT_CELSIUS = 32     # same constant reused
+FAHRENHEIT_TO_CELSIUS_FACTOR = 5 / 9   # used for (F - 32) * (5/9)
+CELSIUS_TO_FAHRENHEIT_FACTOR = 9 / 5   # used for (C * (9/5)) + 32
+FAHRENHEIT_OFFSET = 32                 # offset between Celsius and Fahrenheit scales
+
 
 # ---- Conversion Functions ----
 def convert_to_celsius(fahrenheit):
-    """Convert Fahrenheit to Celsius using the global conversion factor."""
-    return (fahrenheit - FREEZING_POINT_FAHRENHEIT) * FAHRENHEIT_TO_CELSIUS_FACTOR
+    """
+    Convert Fahrenheit to Celsius using global FAHRENHEIT_TO_CELSIUS_FACTOR
+    Formula: C = (F - 32) * (5/9)
+    """
+    return (fahrenheit - FAHRENHEIT_OFFSET) * FAHRENHEIT_TO_CELSIUS_FACTOR
+
 
 def convert_to_fahrenheit(celsius):
-    """Convert Celsius to Fahrenheit using the global conversion factor."""
-    return (celsius * CELSIUS_TO_FAHRENHEIT_FACTOR) + FREEZING_POINT_CELSIUS
+    """
+    Convert Celsius to Fahrenheit using global CELSIUS_TO_FAHRENHEIT_FACTOR
+    Formula: F = (C * (9/5)) + 32
+    """
+    return (celsius * CELSIUS_TO_FAHRENHEIT_FACTOR) + FAHRENHEIT_OFFSET
 
-# ---- Main Program ----
+
+# ---- User Interaction ----
 if __name__ == "__main__":
     try:
-        # Ask for temperature
+        # Prompt user for temperature input
         temp_input = input("Enter the temperature to convert: ")
 
         # Validate numeric input
@@ -27,7 +35,7 @@ if __name__ == "__main__":
 
         temperature = float(temp_input)
 
-        # Ask for unit
+        # Prompt user for the unit
         unit = input("Is this temperature in Celsius or Fahrenheit? (C/F): ").strip().upper()
 
         if unit == "F":
