@@ -8,7 +8,8 @@ def safe_divide(numerator, denominator):
 
         # Try to perform the division
         result = numerator / denominator
-        return f"The result of dividing {numerator} by {denominator} is {result:.2f}"
+        return f"The result of the division is {result}"
+
 
     except ZeroDivisionError:
         return "Error: Cannot divide by zero."
